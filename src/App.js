@@ -19,9 +19,21 @@ function App() {
 		setCart([...cart, item]);
 	};
 
+	const removeItem = id => {
+		const newCart = [...cart];
+		cart.forEach((currItem, i) => {
+			if (id === currItem.id) {
+				newCart.splice(i, 1);
+			}
+		})
+
+		setCart(newCart);
+		console.log(newCart);
+	}
+
 	return (
 		<div className="App">
-			<CartContext.Provider value={cart}>
+			<CartContext.Provider value={{cart, removeItem}}>
 				<ProductContext.Provider value={{products, addItem}}>
 					<Navigation cart={cart} />
 
